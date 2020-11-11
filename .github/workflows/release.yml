@@ -4,25 +4,12 @@ on:
     branches:
       - master
       - next
+
 jobs:
   release:
     name: Release
     runs-on: ubuntu-18.04
     steps:
-      - name: Wait on tests
-        uses: lewagon/wait-on-check-action@v0.1
-        with:
-          ref: master # can be commit SHA or tag too
-          check-name: tests # name of the existing check
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 20 # seconds
-      - name: Wait on lint
-        uses: lewagon/wait-on-check-action@v0.1
-        with:
-          ref: master # can be commit SHA or tag too
-          check-name: lint # name of the existing check
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 20 # seconds
       - name: Checkout
         uses: actions/checkout@v2
         with:
