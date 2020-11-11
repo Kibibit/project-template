@@ -1,110 +1,76 @@
 {
   "name": "@kibibit/project-template",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "all basic node.js project tools installed and ready to go",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "keywords": [],
   "scripts": {
     "generate-barrels": "barrelsby --delete -d ./src -l below -q",
-    "coveralls": "cat ./test-results/coverage/lcov.info | coveralls",
-    "commit": "npx git-cz",
-    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "commit": "cz",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "lint": "eslint src/**/*.js",
     "test": "jest",
     "test:watch": "jest --watch --coverage",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "semantic-release": "semantic-release",
+    "semantic-release:init": "semantic-release-cli setup"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kibibit/project-template.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "thatkookooguy <neilkalman@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Kibibit/project-template/issues"
   },
   "homepage": "https://github.com/Kibibit/project-template#readme",
   "dependencies": {
-    "class-transformer": "^0.2.3",
-    "class-validator": "^0.11.0",
-    "fs-extra": "^8.1.0",
-    "lodash": "^4.17.15",
-    "moment": "^2.24.0"
+    "class-transformer": "^0.3.1",
+    "class-validator": "^0.12.2",
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
-    "@types/fs-extra": "^8.0.1",
-    "@types/lodash": "^4.14.149",
-    "@types/moment": "^2.13.0",
-    "@types/node": "^12.7.5",
+    "@babel/preset-env": "^7.12.1",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-angular": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "all-contributors-cli": "^6.19.0",
+    "babel-jest": "^26.6.3",
     "barrelsby": "^2.2.0",
-    "commitizen": "^4.0.3",
-    "coveralls": "^3.0.9",
-    "cz-conventional-changelog": "^3.0.2",
-    "depcheck": "^0.9.1",
-    "husky": "^3.1.0",
-    "jest": "^24.9.0",
-    "jest-github-reporter": "^0.3.4",
-    "jest-stare": "^1.25.0",
-    "now": "^16.7.0",
-    "supertest": "^4.0.2",
-    "ts-jest": "^24.1.0",
-    "ts-loader": "^6.1.1",
-    "ts-node": "^8.4.1",
-    "tsconfig-paths": "^3.9.0",
-    "tslint": "^5.20.0",
-    "typescript": "^3.6.3"
-  },
-  "jest": {
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "text",
-      "clover",
-      "html"
-    ],
-    "verbose": true,
-    "reporters": [
-      "default",
-      "jest-stare",
-      "jest-github-reporter"
-    ],
-    "testResultsProcessor": "./node_modules/jest-stare",
-    "watchPathIgnorePatterns": [
-      ".*test-results.*\\.js"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.ts",
-      "!src/**/index.ts"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": ".",
-    "testRegex": "\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "coverageDirectory": "./test-results/coverage",
-    "testEnvironment": "node",
-    "moduleNameMapper": {}
+    "commitizen": "^4.2.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.13.0",
+    "eslint-plugin-jest": "^24.1.0",
+    "husky": "^4.3.0",
+    "jest": "^26.6.3",
+    "jest-stare": "^2.2.0",
+    "semantic-release": "^17.2.2",
+    "semantic-release-cli": "^5.4.0",
+    "typescript": "^4.0.5"
   },
   "jest-stare": {
     "resultDir": "test-results/",
-    "coverageLink": "./coverage/index.html"
-  },
-  "husky": {
-    "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && (npm run commit -- --hook) || true",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS || (git config commit.template .commit-template && false)"
-    }
+    "coverageLink": "../coverage/index.html"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
