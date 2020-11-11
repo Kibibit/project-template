@@ -3,7 +3,9 @@
   "editor.detectIndentation": false,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
-  "editor.rulers": [80],
+  "editor.rulers": [
+    80
+  ],
   "editor.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
   "editor.matchBrackets": true,
   // Terminal
@@ -23,7 +25,7 @@
   "eslint.enable": true,
   "eslint.autoFixOnSave": true,
   "eslint.alwaysShowStatus": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "[javascript]": {
     "editor.formatOnSave": false
   },
@@ -77,7 +79,6 @@
     "Modules",
     "/^@kb-/",
     "Workspace"
-
   ],
   "typescriptHero.imports.organizeOnSave": true,
   "typescriptHero.imports.multiLineTrailingComma": false,
